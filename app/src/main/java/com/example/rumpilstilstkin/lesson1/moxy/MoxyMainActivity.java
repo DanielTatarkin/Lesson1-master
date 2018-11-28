@@ -24,9 +24,9 @@ public class MoxyMainActivity extends MvpAppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnCounter1 = (Button) findViewById(R.id.btnCounter1);
-        btnCounter2 = (Button) findViewById(R.id.btnCounter2);
-        btnCounter3 = (Button) findViewById(R.id.btnCounter3);
+        btnCounter1 = findViewById(R.id.btnCounter1);
+        btnCounter2 = findViewById(R.id.btnCounter2);
+        btnCounter3 = findViewById(R.id.btnCounter3);
         btnCounter1.setOnClickListener(this);
         btnCounter2.setOnClickListener(this);
         btnCounter3.setOnClickListener(this);
@@ -34,7 +34,19 @@ public class MoxyMainActivity extends MvpAppCompatActivity
 
     @Override
     public void onClick(View v) {
-        presenter.buttonClick(v.getId());
+        final int btnIndex = v.getId();
+        switch (btnIndex) {
+            case R.id.btnCounter1:
+                presenter.buttonClick(0);
+                break;
+            case R.id.btnCounter2:
+                presenter.buttonClick(1);
+                break;
+            case R.id.btnCounter3:
+                presenter.buttonClick(2);
+                break;
+        }
+
     }
 
     @Override
